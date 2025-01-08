@@ -121,7 +121,8 @@ class LocalChatbotUI:
             sys.stdout = console
 
     def _get_confirm_pull_model(self, model: str):
-        if (model in ["gpt-3.5-turbo", "gpt-4"]) or (self._pipeline.check_exist(model)):
+        if any(substring in model for substring in
+               ["gpt-3.5", "gpt-4", "gemini-1.5"]) or (self._pipeline.check_exist(model)):
             self._change_model(model)
             return (
                 gr.update(visible=False),
@@ -135,7 +136,8 @@ class LocalChatbotUI:
         )
 
     def _pull_model(self, model: str, progress=gr.Progress(track_tqdm=True)):
-        if (model not in ["gpt-3.5-turbo", "gpt-4"]) and not (
+        if any(substring in model for substring in
+               ["gpt-3.5", "gpt-4", "gemini-1.5"]) and not (
             self._pipeline.check_exist(model)
         ):
             response = self._pipeline.pull_model(model)
@@ -287,7 +289,10 @@ class LocalChatbotUI:
                             model = gr.Dropdown(
                                 label="Choose Model:",
                                 choices=[
+                                    "llama3.2:3b-instruct-q8_0",
                                     "llama3.1:8b-instruct-q8_0",
+                                    "gpt-4",
+                                    "models/gemini-1.5-flash"
                                 ],
                                 value=None,
                                 interactive=True,

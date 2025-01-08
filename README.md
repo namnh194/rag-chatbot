@@ -119,10 +119,8 @@ source ./scripts/run.sh --ngrok
 
 - [x] Add evaluation.
 - [x] Better Document Processing.
+- [x] Add Gemini llm client and more local Ollama models.
+- [ ] Organize conversation flows and dataset more effectively
 - [ ] Support better Embedding Model for Vietnamese and other languages.
-- [ ] ReAct Agent.
+- [ ] Experiment with more RAG techniques (ReAct Agent, ...)
 - [ ] Document mangement (Qrdant, MongoDB,...)
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=datvodinh/rag-chatbot&type=Date)](https://star-history.com/#datvodinh/rag-chatbot&Date)

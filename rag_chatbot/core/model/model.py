@@ -1,5 +1,6 @@
 from llama_index.llms.ollama import Ollama
 from llama_index.llms.openai import OpenAI
+from llama_index.llms.gemini import Gemini
 from ...setting import RAGSettings
 from dotenv import load_dotenv
 import requests
@@ -21,6 +22,11 @@ class LocalRAGModel:
         setting = setting or RAGSettings()
         if model_name in ["gpt-3.5-turbo", "gpt-4", "gpt-4o", "gpt-4-turbo"]:
             return OpenAI(
+                model=model_name,
+                temperature=setting.ollama.temperature
+            )
+        elif model_name in ["models/gemini-1.5-flash", "models/gemini-2.0-flash-exp"]:
+            return Gemini(
                 model=model_name,
                 temperature=setting.ollama.temperature
             )
