@@ -338,6 +338,32 @@ html5lib = ["html5lib"]
 lxml = ["lxml"]
 
 [[package]]
+name = "bm25s"
+version = "0.2.6"
+description = "An ultra-fast implementation of BM25 based on sparse matrices."
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
+files = [
+    {file = "bm25s-0.2.6-py3-none-any.whl", hash = "sha256:d46bd78601178cdfb15214e3b9b6aabd70fa63e5a8fce6a58fabf66f7360a910"},
+    {file = "bm25s-0.2.6.tar.gz", hash = "sha256:66ae79cfbbefffa0cbe5b92ac7885ffc678b2432b049b03db6337d28bb3b2b9b"},
+]
+
+[package.dependencies]
+numpy = "*"
+scipy = "*"
+
+[package.extras]
+core = ["PyStemmer", "numba", "orjson", "tqdm"]
+dev = ["black"]
+evaluation = ["pytrec-eval"]
+full = ["PyStemmer", "black", "huggingface-hub", "jax[cpu]", "numba", "orjson", "pytrec-eval", "tqdm"]
+hf = ["huggingface-hub"]
+selection = ["jax[cpu]"]
+stem = ["PyStemmer"]
+
+[[package]]
 name = "build"
 version = "1.2.2.post1"
 description = "A simple, correct Python build frontend"
@@ -551,15 +577,15 @@ numpy = "*"
 
 [[package]]
 name = "chromadb"
-version = "0.5.13"
+version = "0.6.2"
 description = "Chroma."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "chromadb-0.5.13-py3-none-any.whl", hash = "sha256:090134cb8a9bd35622175a8a9bb93a7b56ace413697489e9d2f43a5299a6b7bc"},
-    {file = "chromadb-0.5.13.tar.gz", hash = "sha256:fb1f44b5425976ef2bdf7403d365986ee5a224e5d8108fcd86472ff64de216a0"},
+    {file = "chromadb-0.6.2-py3-none-any.whl", hash = "sha256:77a5e07097e36cdd49d8d2925d0c4d28291cabc9677787423d2cc7c426e8895b"},
+    {file = "chromadb-0.6.2.tar.gz", hash = "sha256:e9e11f04d3850796711ee05dad4e918c75ec7b62ab9cbe7b4588b68a26aaea06"},
 ]
 
 [package.dependencies]
@@ -589,7 +615,7 @@ tenacity = ">=8.2.3"
 tokenizers = ">=0.13.2"
 tqdm = ">=4.65.0"
 typer = ">=0.9.0"
-typing-extensions = ">=4.5.0"
+typing_extensions = ">=4.5.0"
 uvicorn = {version = ">=0.18.3", extras = ["standard"]}
 
 [[package]]
@@ -930,6 +956,19 @@ files = [
 docs = ["furo (>=2024.8.6)", "sphinx (>=8.0.2)", "sphinx-autodoc-typehints (>=2.4.1)"]
 testing = ["covdefaults (>=2.3)", "coverage (>=7.6.1)", "diff-cover (>=9.2)", "pytest (>=8.3.3)", "pytest-asyncio (>=0.24)", "pytest-cov (>=5)", "pytest-mock (>=3.14)", "pytest-timeout (>=2.3.1)", "virtualenv (>=20.26.4)"]
 typing = ["typing-extensions (>=4.12.2)"]
+
+[[package]]
+name = "filetype"
+version = "1.2.0"
+description = "Infer file type and MIME type of any file/buffer. No external dependencies."
+optional = false
+python-versions = "*"
+groups = ["main"]
+markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
+files = [
+    {file = "filetype-1.2.0-py2.py3-none-any.whl", hash = "sha256:7ce71b6880181241cf7ac8697a2f1eb6a8bd9b429f7ad6d27b8db9ba5f1c2d25"},
+    {file = "filetype-1.2.0.tar.gz", hash = "sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb"},
+]
 
 [[package]]
 name = "flatbuffers"
@@ -2111,112 +2150,113 @@ adal = ["adal (>=1.0.2)"]
 
 [[package]]
 name = "llama-cloud"
-version = "0.1.2"
+version = "0.1.8"
 description = ""
 optional = false
 python-versions = "<4,>=3.8"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_cloud-0.1.2-py3-none-any.whl", hash = "sha256:f0ec61b88be689895cc4708b13db4503760e29c67131ec76b4d4583d81d571c5"},
-    {file = "llama_cloud-0.1.2.tar.gz", hash = "sha256:7c80747e9a7f32d4b739c2d5d4add7351f836d92e633d6ac03fa401896d33097"},
+    {file = "llama_cloud-0.1.8-py3-none-any.whl", hash = "sha256:1a0c4cf212a04f2375f1d0791ca4e5f196e0fb0567c4ec96cd9dbcad773de60a"},
+    {file = "llama_cloud-0.1.8.tar.gz", hash = "sha256:7199bab2240a9cc330740003fa77648f43f6e533da411a8250a4a70584f91153"},
 ]
 
 [package.dependencies]
+certifi = ">=2024.7.4,<2025.0.0"
 httpx = ">=0.20.0"
 pydantic = ">=1.10"
 
 [[package]]
 name = "llama-index"
-version = "0.10.68"
+version = "0.12.10"
 description = "Interface between LLMs and your data"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index-0.10.68-py3-none-any.whl", hash = "sha256:e2a1919707260c07f9c10a239a576a399e8c50b2ddcd8d0ad8b4ffb4ad5c5c60"},
-    {file = "llama_index-0.10.68.tar.gz", hash = "sha256:89f79e7ece951f40d753ee6e5a2273ca3728d800cbb2213f65b7e1d58abff0e5"},
+    {file = "llama_index-0.12.10-py3-none-any.whl", hash = "sha256:c397e1355d48a043a4636857519185f9a47eb25e6482134c28e75f64cd4fe11e"},
+    {file = "llama_index-0.12.10.tar.gz", hash = "sha256:942bd89f6363a553ff30f053df3c12703ac81c726d1afb7fc14555b0ede5e8a2"},
 ]
 
 [package.dependencies]
-llama-index-agent-openai = ">=0.1.4,<0.3.0"
-llama-index-cli = ">=0.1.2,<0.2.0"
-llama-index-core = ">=0.10.68,<0.11.0"
-llama-index-embeddings-openai = ">=0.1.5,<0.2.0"
-llama-index-indices-managed-llama-cloud = ">=0.2.0"
-llama-index-legacy = ">=0.9.48,<0.10.0"
-llama-index-llms-openai = ">=0.1.27,<0.2.0"
-llama-index-multi-modal-llms-openai = ">=0.1.3,<0.2.0"
-llama-index-program-openai = ">=0.1.3,<0.2.0"
-llama-index-question-gen-openai = ">=0.1.2,<0.2.0"
-llama-index-readers-file = ">=0.1.4,<0.2.0"
-llama-index-readers-llama-parse = ">=0.1.2"
+llama-index-agent-openai = ">=0.4.0,<0.5.0"
+llama-index-cli = ">=0.4.0,<0.5.0"
+llama-index-core = ">=0.12.10,<0.13.0"
+llama-index-embeddings-openai = ">=0.3.0,<0.4.0"
+llama-index-indices-managed-llama-cloud = ">=0.4.0"
+llama-index-llms-openai = ">=0.3.0,<0.4.0"
+llama-index-multi-modal-llms-openai = ">=0.4.0,<0.5.0"
+llama-index-program-openai = ">=0.3.0,<0.4.0"
+llama-index-question-gen-openai = ">=0.3.0,<0.4.0"
+llama-index-readers-file = ">=0.4.0,<0.5.0"
+llama-index-readers-llama-parse = ">=0.4.0"
+nltk = ">3.8.1"
 
 [[package]]
 name = "llama-index-agent-openai"
-version = "0.2.9"
+version = "0.4.1"
 description = "llama-index agent openai integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_agent_openai-0.2.9-py3-none-any.whl", hash = "sha256:d7f0fd4c87124781acd783be603871f8808b1a3969e876a9c96e2ed0844d46ac"},
-    {file = "llama_index_agent_openai-0.2.9.tar.gz", hash = "sha256:debe86da6d9d983db32b445ddca7c798ac140fe59573bafded73595b3995f3d5"},
+    {file = "llama_index_agent_openai-0.4.1-py3-none-any.whl", hash = "sha256:162507543082f739a8c806911344c8d7f2434d0ee91124cfdd7b0ba5f76d0e57"},
+    {file = "llama_index_agent_openai-0.4.1.tar.gz", hash = "sha256:3a89137b228a6e9c2b3f46e367a27b75fb31b458e21777bba819de654707d59e"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.41,<0.11.0"
-llama-index-llms-openai = ">=0.1.5,<0.2.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+llama-index-llms-openai = ">=0.3.0,<0.4.0"
 openai = ">=1.14.0"
 
 [[package]]
 name = "llama-index-callbacks-wandb"
-version = "0.1.2"
+version = "0.3.0"
 description = "llama-index callbacks wandb integration"
 optional = false
-python-versions = ">=3.8.1,<4.0"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_callbacks_wandb-0.1.2-py3-none-any.whl", hash = "sha256:b54caf33ed6893101501873d3ffc051137d5795876ad96065cea24babbbedb6f"},
-    {file = "llama_index_callbacks_wandb-0.1.2.tar.gz", hash = "sha256:69874c6a61d5e0385ba1de023cd0d6ec2c98c5d73330bf63f6d49e312b24f332"},
+    {file = "llama_index_callbacks_wandb-0.3.0-py3-none-any.whl", hash = "sha256:34c29c8f17f0e6e2b30f0c77d63e6755ad5c88b3ed22034ca75e08a2f5646f89"},
+    {file = "llama_index_callbacks_wandb-0.3.0.tar.gz", hash = "sha256:7404cb681f2f640b4dec06716e5759092e32041a9e98321baf9f70dc2a00d91c"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.1,<0.11.0"
+llama-index-core = ">=0.12.0,<0.13.0"
 wandb = ">=0.16.2,<0.17.0"
 
 [[package]]
 name = "llama-index-cli"
-version = "0.1.13"
+version = "0.4.0"
 description = "llama-index cli"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_cli-0.1.13-py3-none-any.whl", hash = "sha256:5e05bc3ce55ee1bf6e5af7e87631a71d6b6cf8fc2af10cd3947b09b1bac6788d"},
-    {file = "llama_index_cli-0.1.13.tar.gz", hash = "sha256:86147ded4439fbab1d6c7c0d72e8f231d2935da9fdf5c9d3f0dde4f35d44aa59"},
+    {file = "llama_index_cli-0.4.0-py3-none-any.whl", hash = "sha256:60d12f89e6b85e80a0cc3a8b531f05a911b5eebaebc37314411476d1ba685904"},
+    {file = "llama_index_cli-0.4.0.tar.gz", hash = "sha256:d6ab201359962a8a34368aeda3a49bbbe67e9e009c59bd925c4fb2be4ace3906"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.11.post1,<0.11.0"
-llama-index-embeddings-openai = ">=0.1.1,<0.2.0"
-llama-index-llms-openai = ">=0.1.1,<0.2.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+llama-index-embeddings-openai = ">=0.3.0,<0.4.0"
+llama-index-llms-openai = ">=0.3.0,<0.4.0"
 
 [[package]]
 name = "llama-index-core"
-version = "0.10.68.post1"
+version = "0.12.10.post1"
 description = "Interface between LLMs and your data"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_core-0.10.68.post1-py3-none-any.whl", hash = "sha256:1befe1324f0fa1c3a2cfc1e4d38adb0cd0c3b2948badfb2be826da048a3bdbaf"},
-    {file = "llama_index_core-0.10.68.post1.tar.gz", hash = "sha256:1215106973f2fb7651c10827c27ca3f47c03ccfae3b8653c5476d454d5ba8cd0"},
+    {file = "llama_index_core-0.12.10.post1-py3-none-any.whl", hash = "sha256:897e8cd4efeff6842580b043bdf4008ac60f693df1de2bfd975307a4845707c2"},
+    {file = "llama_index_core-0.12.10.post1.tar.gz", hash = "sha256:af27bea4d1494ba84983a649976e60e3de677a73946aa45ed12ce27e3a623ddf"},
 ]
 
 [package.dependencies]
@@ -2224,19 +2264,19 @@ aiohttp = ">=3.8.6,<4.0.0"
 dataclasses-json = "*"
 deprecated = ">=1.2.9.3"
 dirtyjson = ">=1.0.8,<2.0.0"
+filetype = ">=1.2.0,<2.0.0"
 fsspec = ">=2023.5.0"
 httpx = "*"
 nest-asyncio = ">=1.5.8,<2.0.0"
 networkx = ">=3.0"
-nltk = ">=3.8.1,<3.9 || >3.9"
-numpy = "<2.0.0"
-pandas = "*"
+nltk = ">3.8.1"
+numpy = "*"
 pillow = ">=9.0.0"
-pydantic = "<3.0"
+pydantic = ">=2.8.0"
 PyYAML = ">=6.0.1"
 requests = ">=2.31.0"
 SQLAlchemy = {version = ">=1.4.49", extras = ["asyncio"]}
-tenacity = ">=8.2.0,<8.4.0 || >8.4.0,<9.0.0"
+tenacity = ">=8.2.0,<8.4.0 || >8.4.0,<10.0.0"
 tiktoken = ">=0.3.3"
 tqdm = ">=4.66.1,<5.0.0"
 typing-extensions = ">=4.5.0"
@@ -2245,218 +2285,179 @@ wrapt = "*"
 
 [[package]]
 name = "llama-index-embeddings-huggingface"
-version = "0.1.5"
+version = "0.4.0"
 description = "llama-index embeddings huggingface integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_embeddings_huggingface-0.1.5-py3-none-any.whl", hash = "sha256:3cfe007ad1b730c5a42f1b3a9234afb711a01ddba237ec93626283299bd5f0d2"},
-    {file = "llama_index_embeddings_huggingface-0.1.5.tar.gz", hash = "sha256:ba86c39d2aab09990d9d5f7d2c859e4238f299d1e2d5053f129cb4607c74bb50"},
+    {file = "llama_index_embeddings_huggingface-0.4.0-py3-none-any.whl", hash = "sha256:a5890bab349b118398054138b298a9e429776b85bcf8017fdf01cd5d60fbba12"},
+    {file = "llama_index_embeddings_huggingface-0.4.0.tar.gz", hash = "sha256:ce8f8b30b29cff85401aba2118285fb63fb8147a56b656ee20f7e8510ca085a2"},
 ]
 
 [package.dependencies]
 huggingface-hub = {version = ">=0.19.0", extras = ["inference"]}
-llama-index-core = ">=0.10.1,<0.11.0"
-torch = ">=2.1.2,<3.0.0"
-transformers = ">=4.37.0,<5.0.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+sentence-transformers = ">=2.6.1"
 
 [[package]]
 name = "llama-index-embeddings-openai"
-version = "0.1.11"
+version = "0.3.1"
 description = "llama-index embeddings openai integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_embeddings_openai-0.1.11-py3-none-any.whl", hash = "sha256:e20806fc4baff6b8f5274decf2c1ca7c5c737648e01865475ffada164e32e173"},
-    {file = "llama_index_embeddings_openai-0.1.11.tar.gz", hash = "sha256:6025e229e375201788a9b14d6ebe470329907576cba5f6b7b832c3d68f39db30"},
+    {file = "llama_index_embeddings_openai-0.3.1-py3-none-any.whl", hash = "sha256:f15a3d13da9b6b21b8bd51d337197879a453d1605e625a1c6d45e741756c0290"},
+    {file = "llama_index_embeddings_openai-0.3.1.tar.gz", hash = "sha256:1368aad3ce24cbaed23d5ad251343cef1eb7b4a06d6563d6606d59cb347fef20"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.1,<0.11.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+openai = ">=1.1.0"
 
 [[package]]
 name = "llama-index-indices-managed-llama-cloud"
-version = "0.2.7"
+version = "0.6.3"
 description = "llama-index indices llama-cloud integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_indices_managed_llama_cloud-0.2.7-py3-none-any.whl", hash = "sha256:94335504eab2a6baf7361bbd8bda3ae20a68c7d0111587c9a0793440e9edff21"},
-    {file = "llama_index_indices_managed_llama_cloud-0.2.7.tar.gz", hash = "sha256:d7e9b4cc50214b3cfcd75ea63cacce4ee36092cb672c003f15fd23ba31c49ec0"},
+    {file = "llama_index_indices_managed_llama_cloud-0.6.3-py3-none-any.whl", hash = "sha256:7f125602f624a2d321b6a4130cd98df35eb8c15818a159390755b2c13068f4ce"},
+    {file = "llama_index_indices_managed_llama_cloud-0.6.3.tar.gz", hash = "sha256:f09e4182cbc2a2bd75ae85cebb1681075247f0d91b931b094cac4315386ce87a"},
 ]
 
 [package.dependencies]
-llama-cloud = ">=0.0.11"
-llama-index-core = ">=0.10.48.post1,<0.11.0"
-
-[[package]]
-name = "llama-index-legacy"
-version = "0.9.48.post3"
-description = "Interface between LLMs and your data"
-optional = false
-python-versions = "<4.0,>=3.8.1"
-groups = ["main"]
-markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
-files = [
-    {file = "llama_index_legacy-0.9.48.post3-py3-none-any.whl", hash = "sha256:04221320d84d96ba9ee3e21e5055bd8527cbd769e8f1c60cf0368ed907e012a2"},
-    {file = "llama_index_legacy-0.9.48.post3.tar.gz", hash = "sha256:f6969f1085efb0abebd6367e46f3512020f3f6b9c086f458a519830dd61e8206"},
-]
-
-[package.dependencies]
-aiohttp = ">=3.8.6,<4.0.0"
-dataclasses-json = "*"
-deprecated = ">=1.2.9.3"
-dirtyjson = ">=1.0.8,<2.0.0"
-fsspec = ">=2023.5.0"
-httpx = "*"
-nest-asyncio = ">=1.5.8,<2.0.0"
-networkx = ">=3.0"
-nltk = ">=3.8.1"
-numpy = "*"
-openai = ">=1.1.0"
-pandas = "*"
-requests = ">=2.31.0"
-SQLAlchemy = {version = ">=1.4.49", extras = ["asyncio"]}
-tenacity = ">=8.2.0,<9.0.0"
-tiktoken = ">=0.3.3"
-typing-extensions = ">=4.5.0"
-typing-inspect = ">=0.8.0"
-
-[package.extras]
-gradientai = ["gradientai (>=1.4.0)"]
-html = ["beautifulsoup4 (>=4.12.2,<5.0.0)"]
-langchain = ["langchain (>=0.0.303)"]
-local-models = ["optimum[onnxruntime] (>=1.13.2,<2.0.0)", "sentencepiece (>=0.1.99,<0.2.0)", "transformers[torch] (>=4.33.1,<5.0.0)"]
-postgres = ["asyncpg (>=0.28.0,<0.29.0)", "pgvector (>=0.1.0,<0.2.0)", "psycopg2-binary (>=2.9.9,<3.0.0)"]
-query-tools = ["guidance (>=0.0.64,<0.0.65)", "jsonpath-ng (>=1.6.0,<2.0.0)", "lm-format-enforcer (>=0.4.3,<0.5.0)", "rank-bm25 (>=0.2.2,<0.3.0)", "scikit-learn", "spacy (>=3.7.1,<4.0.0)"]
+llama-cloud = ">=0.1.5"
+llama-index-core = ">=0.12.0,<0.13.0"
 
 [[package]]
 name = "llama-index-llms-gemini"
-version = "0.1.12"
+version = "0.4.3"
 description = "llama-index llms gemini integration"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_llms_gemini-0.1.12-py3-none-any.whl", hash = "sha256:51af0f0bb3bf81bd57475041a782279ca6270cf7ef2d2c9c4c8903a6fb4e1054"},
-    {file = "llama_index_llms_gemini-0.1.12.tar.gz", hash = "sha256:b2406c1cfd4e079b65ac132963afb6a843c2cd9e4c7f898451143344ee37ce6e"},
+    {file = "llama_index_llms_gemini-0.4.3-py3-none-any.whl", hash = "sha256:c76baadcfb304dde6488a1d1f36f939feb50380a7d374d4bb7b8b5ca1617fb7b"},
+    {file = "llama_index_llms_gemini-0.4.3.tar.gz", hash = "sha256:4c6fdbe651684a8b8b718d6b790d408d58f424e7287a3593e465538523810b78"},
 ]
 
 [package.dependencies]
-google-generativeai = ">=0.5.2,<0.6.0"
-llama-index-core = ">=0.10.11.post1,<0.11.0"
+google-generativeai = ">=0.5.2"
+llama-index-core = ">=0.12.0,<0.13.0"
 pillow = ">=10.2.0,<11.0.0"
 
 [[package]]
 name = "llama-index-llms-ollama"
-version = "0.1.6"
+version = "0.5.0"
 description = "llama-index llms ollama integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_llms_ollama-0.1.6-py3-none-any.whl", hash = "sha256:23b4809edd088315ee91f0d154e4511af65d0379eb17c57c59c61f9606556514"},
-    {file = "llama_index_llms_ollama-0.1.6.tar.gz", hash = "sha256:329f9452ebc2e326123260b776213a0b2fd13a7c7d38cbdda6153cd3d3d243ff"},
+    {file = "llama_index_llms_ollama-0.5.0-py3-none-any.whl", hash = "sha256:f5976865a60264e9e3c9a5625971235860cc85b03d437f9cff4d2bb8ca4eb9c8"},
+    {file = "llama_index_llms_ollama-0.5.0.tar.gz", hash = "sha256:f3c0da04f854079033ee3c1b111e097456005b9a3867ed4bb49b8d28e4a0f336"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.1,<0.11.0"
+llama-index-core = ">=0.12.4,<0.13.0"
+ollama = ">=0.4.3"
 
 [[package]]
 name = "llama-index-llms-openai"
-version = "0.1.31"
+version = "0.3.12"
 description = "llama-index llms openai integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_llms_openai-0.1.31-py3-none-any.whl", hash = "sha256:800815b1b964b7d8dddd0e02a09fb57ac5f2ec6f80db92cd704dae718846023f"},
-    {file = "llama_index_llms_openai-0.1.31.tar.gz", hash = "sha256:c235493f453b92903722054a8dfb1452ea850eac47a68a38bab3b823988d56fe"},
+    {file = "llama_index_llms_openai-0.3.12-py3-none-any.whl", hash = "sha256:08be76b9e649f6085e93292504074728a6531eb7f8930eaf40a2fce70a9f59df"},
+    {file = "llama_index_llms_openai-0.3.12.tar.gz", hash = "sha256:1880273a7e409c05f1dbccdbac5ce3c214771901cd3696aeb556a29dfed8477a"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.57,<0.11.0"
-openai = ">=1.40.0,<2.0.0"
+llama-index-core = ">=0.12.4,<0.13.0"
+openai = ">=1.58.1,<2.0.0"
 
 [[package]]
 name = "llama-index-multi-modal-llms-openai"
-version = "0.1.9"
+version = "0.4.2"
 description = "llama-index multi-modal-llms openai integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_multi_modal_llms_openai-0.1.9-py3-none-any.whl", hash = "sha256:614f40427a4671e72742780be8fda77297dbf2942519bffcb2c9de8696a9edff"},
-    {file = "llama_index_multi_modal_llms_openai-0.1.9.tar.gz", hash = "sha256:dbacf44d5c2cca07ca424eacd1337583002d70387a3c1868cf8ae743b1dbec4a"},
+    {file = "llama_index_multi_modal_llms_openai-0.4.2-py3-none-any.whl", hash = "sha256:093f60f59fc423abab110810f8f129b96b0212b9737d74480f0e3e1b715e975b"},
+    {file = "llama_index_multi_modal_llms_openai-0.4.2.tar.gz", hash = "sha256:3437a08cec85cebbc212aa73da5c9b8b054b4dc628338568435a7df88489476f"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.1,<0.11.0"
-llama-index-llms-openai = ">=0.1.1,<0.2.0"
+llama-index-core = ">=0.12.3,<0.13.0"
+llama-index-llms-openai = ">=0.3.0,<0.4.0"
 
 [[package]]
 name = "llama-index-program-openai"
-version = "0.1.7"
+version = "0.3.1"
 description = "llama-index program openai integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_program_openai-0.1.7-py3-none-any.whl", hash = "sha256:33489b573c1050a3f583ff68fcbc4bcbd49f29e74f3e5baea08ab0d5f363403c"},
-    {file = "llama_index_program_openai-0.1.7.tar.gz", hash = "sha256:bf7eb61a073381714be5a049d93b40044dfe51bd4333bee539d1532b7407621f"},
+    {file = "llama_index_program_openai-0.3.1-py3-none-any.whl", hash = "sha256:93646937395dc5318fd095153d2f91bd632b25215d013d14a87c088887d205f9"},
+    {file = "llama_index_program_openai-0.3.1.tar.gz", hash = "sha256:6039a6cdbff62c6388c07e82a157fe2edd3bbef0c5adf292ad8546bf4ec75b82"},
 ]
 
 [package.dependencies]
-llama-index-agent-openai = ">=0.1.1,<0.3.0"
-llama-index-core = ">=0.10.57,<0.11.0"
-llama-index-llms-openai = ">=0.1.1"
+llama-index-agent-openai = ">=0.4.0,<0.5.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+llama-index-llms-openai = ">=0.3.0,<0.4.0"
 
 [[package]]
 name = "llama-index-question-gen-openai"
-version = "0.1.3"
+version = "0.3.0"
 description = "llama-index question_gen openai integration"
 optional = false
-python-versions = ">=3.8.1,<4.0"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_question_gen_openai-0.1.3-py3-none-any.whl", hash = "sha256:1f83b49e8b2e665030d1ec8c54687d6985d9fa8426147b64e46628a9e489b302"},
-    {file = "llama_index_question_gen_openai-0.1.3.tar.gz", hash = "sha256:4486198117a45457d2e036ae60b93af58052893cc7d78fa9b6f47dd47b81e2e1"},
+    {file = "llama_index_question_gen_openai-0.3.0-py3-none-any.whl", hash = "sha256:9b60ec114273a63b50349948666e5744a8f58acb645824e07c979041e8fec598"},
+    {file = "llama_index_question_gen_openai-0.3.0.tar.gz", hash = "sha256:efd3b468232808e9d3474670aaeab00e41b90f75f52d0c9bfbf11207e0963d62"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.1,<0.11.0"
-llama-index-llms-openai = ">=0.1.1,<0.2.0"
-llama-index-program-openai = ">=0.1.1,<0.2.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+llama-index-llms-openai = ">=0.3.0,<0.4.0"
+llama-index-program-openai = ">=0.3.0,<0.4.0"
 
 [[package]]
 name = "llama-index-readers-file"
-version = "0.1.33"
+version = "0.4.2"
 description = "llama-index readers file integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_readers_file-0.1.33-py3-none-any.whl", hash = "sha256:c968308497c1355acf61fe7e3f05ad8e308bb6487dddd3bd2a60e102225d0b38"},
-    {file = "llama_index_readers_file-0.1.33.tar.gz", hash = "sha256:247a4d5bfabc7d1022027adf58064bc16c224d006db142abb0d182ac5574a887"},
+    {file = "llama_index_readers_file-0.4.2-py3-none-any.whl", hash = "sha256:9341ff375aae3ab58256af4fc7c6619e08b04a1e78bc5c9d3d1763df3b9223a6"},
+    {file = "llama_index_readers_file-0.4.2.tar.gz", hash = "sha256:d677a2eef0695d00b487ac4ea14c82e6a4eaade3a09c540f8f81626d852e3491"},
 ]
 
 [package.dependencies]
 beautifulsoup4 = ">=4.12.3,<5.0.0"
-llama-index-core = ">=0.10.37.post1,<0.11.0"
-pypdf = ">=4.0.1,<5.0.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+pandas = "*"
+pypdf = ">=5.1.0,<6.0.0"
 striprtf = ">=0.0.26,<0.0.27"
 
 [package.extras]
@@ -2464,70 +2465,73 @@ pymupdf = ["pymupdf (>=1.23.21,<2.0.0)"]
 
 [[package]]
 name = "llama-index-readers-llama-parse"
-version = "0.1.6"
+version = "0.4.0"
 description = "llama-index readers llama-parse integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_readers_llama_parse-0.1.6-py3-none-any.whl", hash = "sha256:71d445a2357ce4c632e0fada7c913ac62790e77c062f12d916dd86378380ff1f"},
-    {file = "llama_index_readers_llama_parse-0.1.6.tar.gz", hash = "sha256:04f2dcfbb0fb87ce70890f5a2f4f89941d79be6a818b43738f053560e4b451cf"},
+    {file = "llama_index_readers_llama_parse-0.4.0-py3-none-any.whl", hash = "sha256:574e48386f28d2c86c3f961ca4a4906910312f3400dd0c53014465bfbc6b32bf"},
+    {file = "llama_index_readers_llama_parse-0.4.0.tar.gz", hash = "sha256:e99ec56f4f8546d7fda1a7c1ae26162fb9acb7ebcac343b5abdb4234b4644e0f"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.7,<0.11.0"
-llama-parse = ">=0.4.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+llama-parse = ">=0.5.0"
 
 [[package]]
 name = "llama-index-retrievers-bm25"
-version = "0.1.5"
+version = "0.5.0"
 description = "llama-index retrievers bm25 integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_retrievers_bm25-0.1.5-py3-none-any.whl", hash = "sha256:0ee769c1fdfe9c8be380c6b289b4879a50dbe7667fc8ce5ab9919623d5d787b1"},
-    {file = "llama_index_retrievers_bm25-0.1.5.tar.gz", hash = "sha256:95446323036521d68b0cefda6d8e1cc2393ae9af14c7baa3ed611d4309d5d3b8"},
+    {file = "llama_index_retrievers_bm25-0.5.0-py3-none-any.whl", hash = "sha256:4903a2eda14104866e15f8bf2b80845f81b8171637d254e4beefce63b6da49a5"},
+    {file = "llama_index_retrievers_bm25-0.5.0.tar.gz", hash = "sha256:4db29b9f959362423fbf3bc36039bc553f9a019899b573899b09a1f75162792f"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.1,<0.11.0"
-rank-bm25 = ">=0.2.2,<0.3.0"
+bm25s = ">=0.2.0,<0.3.0"
+llama-index-core = ">=0.12.0,<0.13.0"
+pystemmer = ">=2.2.0.1,<3.0.0.0"
 
 [[package]]
 name = "llama-index-vector-stores-chroma"
-version = "0.1.10"
+version = "0.4.1"
 description = "llama-index vector_stores chroma integration"
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_index_vector_stores_chroma-0.1.10-py3-none-any.whl", hash = "sha256:18859272ec8d3ed20bae7e4a9bc18feb4233e8be2a725d33626f283ac41d1475"},
-    {file = "llama_index_vector_stores_chroma-0.1.10.tar.gz", hash = "sha256:97971f7b36461ef37be023b9ceb5531396cc48360d0bdbda51cce1290301cc47"},
+    {file = "llama_index_vector_stores_chroma-0.4.1-py3-none-any.whl", hash = "sha256:42200af4fa5c8df820b865825d1b506cecb922c8fbd7421eda8a5609b390c1d5"},
+    {file = "llama_index_vector_stores_chroma-0.4.1.tar.gz", hash = "sha256:70ee74ccf304adda04171d014e483759c68a1c92f679ea2ca2e6b6f45b6fef08"},
 ]
 
 [package.dependencies]
-chromadb = ">=0.4.0,<0.6.0"
-llama-index-core = ">=0.10.1,<0.11.0"
+chromadb = ">=0.5.17"
+llama-index-core = ">=0.12.0,<0.13.0"
 
 [[package]]
 name = "llama-parse"
-version = "0.4.9"
+version = "0.5.19"
 description = "Parse files into RAG-Optimized formats."
 optional = false
-python-versions = "<4.0,>=3.8.1"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "llama_parse-0.4.9-py3-none-any.whl", hash = "sha256:71974a57a73d642608cc406942bee4e7fc1a713fa410f51df67da509479ba544"},
-    {file = "llama_parse-0.4.9.tar.gz", hash = "sha256:657f8fa5f7d399f14c0454fc05cae6034da0373f191df6cfca17a1b4a704ef87"},
+    {file = "llama_parse-0.5.19-py3-none-any.whl", hash = "sha256:715cc895d183531b4299359d4f4004089b2e522f5f137f316084e7aa04035b62"},
+    {file = "llama_parse-0.5.19.tar.gz", hash = "sha256:db69da70e199a2664705eb983a70fa92b7cee19dd6cff175af7692a0b8a4dd53"},
 ]
 
 [package.dependencies]
-llama-index-core = ">=0.10.29"
+click = ">=8.1.7,<9.0.0"
+llama-index-core = ">=0.11.0"
+pydantic = "!=2.10"
 
 [[package]]
 name = "markdown-it-py"
@@ -3305,6 +3309,23 @@ signals = ["blinker (>=1.4.0)"]
 signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
+name = "ollama"
+version = "0.4.5"
+description = "The official Python client for Ollama."
+optional = false
+python-versions = "<4.0,>=3.8"
+groups = ["main"]
+markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
+files = [
+    {file = "ollama-0.4.5-py3-none-any.whl", hash = "sha256:74936de89a41c87c9745f09f2e1db964b4783002188ac21241bfab747f46d925"},
+    {file = "ollama-0.4.5.tar.gz", hash = "sha256:e7fb71a99147046d028ab8b75e51e09437099aea6f8f9a0d91a71f787e97439e"},
+]
+
+[package.dependencies]
+httpx = ">=0.27.0,<0.28.0"
+pydantic = ">=2.9.0,<3.0.0"
+
+[[package]]
 name = "onnxruntime"
 version = "1.19.2"
 description = "ONNX Runtime is a runtime accelerator for Machine Learning models"
@@ -3350,15 +3371,15 @@ sympy = "*"
 
 [[package]]
 name = "openai"
-version = "1.51.2"
+version = "1.59.4"
 description = "The official Python library for the openai API"
 optional = false
-python-versions = ">=3.7.1"
+python-versions = ">=3.8"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "openai-1.51.2-py3-none-any.whl", hash = "sha256:5c5954711cba931423e471c37ff22ae0fd3892be9b083eee36459865fbbb83fa"},
-    {file = "openai-1.51.2.tar.gz", hash = "sha256:c6a51fac62a1ca9df85a522e462918f6bb6bc51a8897032217e453a0730123a6"},
+    {file = "openai-1.59.4-py3-none-any.whl", hash = "sha256:82113498699998e98104f87c19a890e82df9b01251a0395484360575d3a1d98a"},
+    {file = "openai-1.59.4.tar.gz", hash = "sha256:b946dc5a2308dc1e03efbda80bf1cd64b6053b536851ad519f57ee44401663d2"},
 ]
 
 [package.dependencies]
@@ -3373,6 +3394,7 @@ typing-extensions = ">=4.11,<5"
 
 [package.extras]
 datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+realtime = ["websockets (>=13,<15)"]
 
 [[package]]
 name = "opentelemetry-api"
@@ -4284,25 +4306,26 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pypdf"
-version = "4.3.1"
+version = "5.1.0"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.8"
 groups = ["main"]
 markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
-    {file = "pypdf-4.3.1-py3-none-any.whl", hash = "sha256:64b31da97eda0771ef22edb1bfecd5deee4b72c3d1736b7df2689805076d6418"},
-    {file = "pypdf-4.3.1.tar.gz", hash = "sha256:b2f37fe9a3030aa97ca86067a56ba3f9d3565f9a791b305c7355d8392c30d91b"},
+    {file = "pypdf-5.1.0-py3-none-any.whl", hash = "sha256:3bd4f503f4ebc58bae40d81e81a9176c400cbbac2ba2d877367595fb524dfdfc"},
+    {file = "pypdf-5.1.0.tar.gz", hash = "sha256:425a129abb1614183fd1aca6982f650b47f8026867c0ce7c4b9f281c443d2740"},
 ]
 
 [package.dependencies]
 typing_extensions = {version = ">=4.0", markers = "python_version < \"3.11\""}
 
 [package.extras]
-crypto = ["PyCryptodome", "cryptography"]
+crypto = ["cryptography"]
+cryptodome = ["PyCryptodome"]
 dev = ["black", "flit", "pip-tools", "pre-commit (<2.18.0)", "pytest-cov", "pytest-socket", "pytest-timeout", "pytest-xdist", "wheel"]
 docs = ["myst_parser", "sphinx", "sphinx_rtd_theme"]
-full = ["Pillow (>=8.0.0)", "PyCryptodome", "cryptography"]
+full = ["Pillow (>=8.0.0)", "cryptography"]
 image = ["Pillow (>=8.0.0)"]
 
 [[package]]
@@ -4345,6 +4368,99 @@ files = [
 
 [package.extras]
 dev = ["build", "flake8", "mypy", "pytest", "twine"]
+
+[[package]]
+name = "pystemmer"
+version = "2.2.0.3"
+description = "Snowball stemming algorithms, for information retrieval"
+optional = false
+python-versions = "*"
+groups = ["main"]
+markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
+files = [
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:2935aa78a89b04899de4a8b8b6339806e0d5cd93811de52e98829b5762cf913c"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:31c9d3c808647d4c569737b32b40ed23c67133d2b89033ebc8b5756cadf6f1c1"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:584ead989545a60919e4015371dd2f69ff0ca985e76618d41930f77b9e248286"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:be904f4d0d522de98ff9f0a348d8748c2f95926523b7b04ee75b50967289782d"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-musllinux_1_2_i686.whl", hash = "sha256:7024cdbcf4bbc2a5e1c277e11a10cb2b7481b7f99946cdcfa7271d5e9799399a"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:aa0f70f84c69b7a6a38ddbea51a29f855c42120e8069ea4c450021a2c7dc42d8"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-win32.whl", hash = "sha256:85e583ec705b1b1c0503bc9cdbca027d3446cbc7cf7de3d29f1e0ab58999e5fe"},
+    {file = "PyStemmer-2.2.0.3-cp310-cp310-win_amd64.whl", hash = "sha256:4556b2718bb22052f39a50f3166c4ee0e140c58ee06bbab31d57d765159d2f00"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:0c76ac603ff774fe3137340083315f34d6afbcd4ebebab99c1564c00c1c318ee"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:ee100ba27a07d2fc3bd29cdd619cdff51735ed059002574c550697d1d160b7c9"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:3932f794e84bf29bdf4952d018b00c290fd06b055648f8e8fb9132e6684c4472"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f74f6e0bb2034880bf4688ab5b95f97bb90952086682a93f080b260b454f933e"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-musllinux_1_2_i686.whl", hash = "sha256:af925366939839e4bf11f426388201195c305a3edcdd9097e8775fbd083ff309"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:b199cbab2ce93ee1dd76da4d0523af5af4446d775b7bcb75dfdfcd2a8226404e"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-win32.whl", hash = "sha256:e9bbaa5aa38a2f82bb1eaa6b97396e58c3a7f87e46607f52c7fda53927616eda"},
+    {file = "PyStemmer-2.2.0.3-cp311-cp311-win_amd64.whl", hash = "sha256:258af638eb68273f130c9878de2bb4a427fe99e86900b9b9b09c1cd7a185c189"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:c30c44241065beb9432273874f199fc109473338d9f2c921a3387fd534fd94a7"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:a6adf0b86b6be85f0cf80b2b255b2b0179782b4a3f39c0a6c5b3dd07af5f95eb"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:2d42b41082553fa23a4ce191860fd7caffdeaf8507e84db630a97ed154bd2320"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ec763ee2994402c534bf898ff318edd158c32071c3ffbdcd7ae7b7c884250471"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-musllinux_1_2_i686.whl", hash = "sha256:264f09d5f70b09c845a6f0d0d4973de674056fd50452cb9383ffae8fc0967f1d"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:5634f38a781b9a893550c23380af080ca5291d19c2bcb1753a34022d1d0de7cb"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-win32.whl", hash = "sha256:186c2e90ea2c3d0fab21f10f17b48fb7d716cba5f49b68f7f0fe539db4ff0499"},
+    {file = "PyStemmer-2.2.0.3-cp312-cp312-win_amd64.whl", hash = "sha256:320c1da333f5f8571e2b313c9fa6c0a7a79d8a00a2ad0bf29932d931d236d7e8"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:806530b6a1542efd6453fc5f5b5aa348d52c337d0eb1dfc54a5ff6a8733d7ccc"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:d3fe53911811ec554b13a2c3b0ceb1a23c6fbed3d510ea0d8544a4e0b861e4d6"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:cf26cc1071685597b54b78dd2f62080c58f9be1cb9b4f9c92f94d5c0b5e5e65d"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f3d229a8451e5e909c3f41e19c2f1c9a531d3281954a8cbc06163a458adcc465"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-musllinux_1_2_i686.whl", hash = "sha256:f44e27fbdeffd46b513ed80d5dab0c7e0e09fb1cd85e8dbf8041b6e4a2d55bee"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:4acd71d4359399e41543198caf150e7f398a8d52e371a0c89ba63a90ec3e0909"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-win32.whl", hash = "sha256:91ab47d071383b5c558542bf54facf116f3fd1516c177ef10843f41e528d8873"},
+    {file = "PyStemmer-2.2.0.3-cp313-cp313-win_amd64.whl", hash = "sha256:4e192613a1e02b0cebcbb9f8a708001bdf7ec842972b42008f3b0b006a8c53b6"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:5abfc79e82bbec2242f766876f7a2afa3b7bd124b73016650319e95bcb6449d6"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:b428a233f0f86ef99147d803478f4050a3dc770a760c1cefdadaf080e0900155"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:591230dce77c49ab61a923409cfd271e1a1db41e58081dd1125511d6a7cb0239"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-musllinux_1_2_i686.whl", hash = "sha256:033a3d2a78d8ff03520da9d7a419599e91455f875b9bac51245ec4b24ea5de9c"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-musllinux_1_2_x86_64.whl", hash = "sha256:fa584c6890c18ec379bf597bc71fed902d900827c63f615d45ad24b2cc4cad9a"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-win32.whl", hash = "sha256:70f4d62d60483f8463ee759b6754a0482fd902652f87d37511ffffc579a2b276"},
+    {file = "PyStemmer-2.2.0.3-cp36-cp36m-win_amd64.whl", hash = "sha256:15e12442d393aa8d4e2ed8a2e513f46f8d340981cab3173351d0a36919888658"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:71f75c04b8a90499b4a54d50baa2ec647504853613ec486e1f1d922c11dfb6b6"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:9491400aa99f1172e53c9619fde67f7419f0256e48d3d660b8c6e5d637e4701a"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ef83887dee6a636e8c89bba24dfe04d695a808ffb41280e4ca64985135a0892d"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-musllinux_1_2_i686.whl", hash = "sha256:edac115a129ee11c8bd47822d898199568e3ef90118c03f154d1d4c48bfb49df"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-musllinux_1_2_x86_64.whl", hash = "sha256:1483ffdc48d7065bdae99abcb3075b892b0508295f2a5627d2eeeceae56c7ec2"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-win32.whl", hash = "sha256:62fb36213acbafe4d2f6a358b187b516c39daf0491a41377b915810f2a1cd959"},
+    {file = "PyStemmer-2.2.0.3-cp37-cp37m-win_amd64.whl", hash = "sha256:73dbd546a3122677aeebc8f0e645d4b95ea548c98784fd06157080222690080b"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:77fbe1c9c382dbed42aabf61c481e68559f9fd4281ada051f0dc49317e08d38f"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:dfcd54f6e8c01ed63693f6ada399f59fe78c777d26f9e7d0b22ec03afbe19b98"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:5c57e1cb57f3d535de1ff2a6be9b9525557d252ed290b708b79bc35d9f058319"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b820bd316351de434ddc331fb3f861e5f2c6bcd8f495636be5cc6e2d4b2147aa"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-musllinux_1_2_i686.whl", hash = "sha256:61e239b8b48713270bb6b03f211c170e84d5a33a49ec735552e2f30001082a12"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-musllinux_1_2_x86_64.whl", hash = "sha256:783e5451eb8bb48f24c60f749c7912fd32439330c61738acf4fc91c1ef610066"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-win32.whl", hash = "sha256:1ea84ed2411b6671363e51cfb31af64370a48627a64e465c5dc1ae9545529fd8"},
+    {file = "PyStemmer-2.2.0.3-cp38-cp38-win_amd64.whl", hash = "sha256:ef50a927740ad366fad147a387a0976b50f35fa62da3dd8c6791a00353b258cc"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:931b0327eb52f87621444576ca11e6d45ba44edfecc591ff77d8ed4dfaa7293f"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:bc1b867d17859d68ffe00b0511eeb3a1904cef794c77f5c30f165075d9f487d5"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8bbdd506b5b242f830f34d6ad842adeb8e45f4675ac7548dc7f541fdbdd1748d"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:66aa082011dbce0d58632f4b01a427116e0377d80c0aed991e331dfe2b55577d"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-musllinux_1_2_i686.whl", hash = "sha256:fe861224607410ea36c363ae0c77fd8a34efcf94663f1f9422fcf8e55869aeb8"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:f072dc2445ecac86a8e85540d5c2b8da0b0d21533c4ecd5e1ed1cde435530d66"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-win32.whl", hash = "sha256:31eeabc246768efa25b36110acd7486768e72f0d4a21509119dd2c89a12b4a4f"},
+    {file = "PyStemmer-2.2.0.3-cp39-cp39-win_amd64.whl", hash = "sha256:dad2cdbd1acf81e838db79ed7dc65574069a9a2ebef7c9650a47d2a4bdcb542d"},
+    {file = "PyStemmer-2.2.0.3-pp310-pypy310_pp73-macosx_10_15_x86_64.whl", hash = "sha256:ff3feeac41968fd8b50e9d6b8a03a5f15b27e765a0826f06dc32155f8f22909c"},
+    {file = "PyStemmer-2.2.0.3-pp310-pypy310_pp73-macosx_11_0_arm64.whl", hash = "sha256:41a31d8ad810063e2cc675d93d0951dbfbb6ede278e111f15d74b7d781612364"},
+    {file = "PyStemmer-2.2.0.3-pp310-pypy310_pp73-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:4abcb516040d7a561eb95c60125f9f5636080c154f46d365b14cd33197ac74fd"},
+    {file = "PyStemmer-2.2.0.3-pp310-pypy310_pp73-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f8c307f1d5084e6074bc1826df9453887e589e92bab63851991b444f68a08b7e"},
+    {file = "PyStemmer-2.2.0.3-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:7f0d5f36922ea94599f79f86383972e91cdeab28918f8e1535cd589d2b5fb345"},
+    {file = "PyStemmer-2.2.0.3-pp37-pypy37_pp73-macosx_10_9_x86_64.whl", hash = "sha256:6f9b01764d7bacfb2655d305259de27a023624df2c5ba6acbf2b25ed0f4f2271"},
+    {file = "PyStemmer-2.2.0.3-pp37-pypy37_pp73-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:b573b678f8d34a1349eceb4ea047bbfae8fa6b1b7c77ffbe36ea3ab9b86a5391"},
+    {file = "PyStemmer-2.2.0.3-pp37-pypy37_pp73-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6974514fe5c6909599e7122937ddb73fd8313da7ee68ce2e601c5c28b3c4e2f5"},
+    {file = "PyStemmer-2.2.0.3-pp37-pypy37_pp73-win_amd64.whl", hash = "sha256:0f17dc30e656710ca866ca4f8a4af6bb1e46e4da349b89a59a9ebc2825b93852"},
+    {file = "PyStemmer-2.2.0.3-pp38-pypy38_pp73-macosx_10_9_x86_64.whl", hash = "sha256:a278907d4cf9bd65888fe45f264765b579791af5ed32dd943761b26213b78bcd"},
+    {file = "PyStemmer-2.2.0.3-pp38-pypy38_pp73-macosx_11_0_arm64.whl", hash = "sha256:a79a06f642ffd9c9f8fc8cfe84c6e278965d5d250598f27f86af774bcc78fdf7"},
+    {file = "PyStemmer-2.2.0.3-pp38-pypy38_pp73-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:e88eeeb5b221b4647f7471a683b7cc9e270bd11e5b8e83c983dc62fd72b9f5c3"},
+    {file = "PyStemmer-2.2.0.3-pp38-pypy38_pp73-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d648b669bf761a61d42b82497d397a84039e22f3a20a601b718ec7db7bfe0feb"},
+    {file = "PyStemmer-2.2.0.3-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:09d236633ba63ab312e8d763a23803dcef4d2192c3cc3760f14bb749393413c6"},
+    {file = "PyStemmer-2.2.0.3-pp39-pypy39_pp73-macosx_10_15_x86_64.whl", hash = "sha256:84c141725402033472b64b4d40deb828de040b6890399de2fbe9b9b16f939cc4"},
+    {file = "PyStemmer-2.2.0.3-pp39-pypy39_pp73-macosx_11_0_arm64.whl", hash = "sha256:5b4229166a04b6c0dab7e2234e4203ba4a4993805367524cd79d7e7bdd15b7af"},
+    {file = "PyStemmer-2.2.0.3-pp39-pypy39_pp73-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:e051104462150ce801e8fb4ca3aee23e4a9a2ba31c21a8a95b231ee776a12a56"},
+    {file = "PyStemmer-2.2.0.3-pp39-pypy39_pp73-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e92f8bdd2b7ddf84cafdda6eb613e1c536b62d6a412d633a202d7d5e41155b89"},
+    {file = "PyStemmer-2.2.0.3-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:825b81d3340671583cae72ff0918ad898718aa0e37662c6b4d63e63e8f5f98d9"},
+    {file = "pystemmer-2.2.0.3.tar.gz", hash = "sha256:9ac74c8d0f3358dbb050f64cddbb8d55021d831d92305d7c20780ea8d6c0020e"},
+]
 
 [[package]]
 name = "pytest"
@@ -4491,25 +4607,6 @@ files = [
     {file = "PyYAML-6.0.2-cp39-cp39-win_amd64.whl", hash = "sha256:39693e1f8320ae4f43943590b49779ffb98acb81f788220ea932a6b6c51004d8"},
     {file = "pyyaml-6.0.2.tar.gz", hash = "sha256:d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"},
 ]
-
-[[package]]
-name = "rank-bm25"
-version = "0.2.2"
-description = "Various BM25 algorithms for document ranking"
-optional = false
-python-versions = "*"
-groups = ["main"]
-markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
-files = [
-    {file = "rank_bm25-0.2.2-py3-none-any.whl", hash = "sha256:7bd4a95571adadfc271746fa146a4bcfd89c0cf731e49c3d1ad863290adbe8ae"},
-    {file = "rank_bm25-0.2.2.tar.gz", hash = "sha256:096ccef76f8188563419aaf384a02f0ea459503fdf77901378d4fd9d87e5e51d"},
-]
-
-[package.dependencies]
-numpy = "*"
-
-[package.extras]
-dev = ["pytest"]
 
 [[package]]
 name = "regex"
@@ -6411,4 +6508,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "5943119e475a946904c1ebf89df58144732504a11b50715a617d7c85daf856f5"
+content-hash = "2b42d658101461875209549243252752e7e1905b7174ffefc53c733a25af60cf"

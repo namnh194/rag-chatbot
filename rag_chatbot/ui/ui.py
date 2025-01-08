@@ -289,10 +289,32 @@ class LocalChatbotUI:
                             model = gr.Dropdown(
                                 label="Choose Model:",
                                 choices=[
-                                    "llama3.2:3b-instruct-q8_0",
                                     "llama3.1:8b-instruct-q8_0",
                                     "gpt-4",
                                     "models/gemini-1.5-flash"
+                                ],
+                                value=None,
+                                interactive=True,
+                                allow_custom_value=True,
+                            )
+                            embed_model = gr.Dropdown(
+                                label="Choose Embedding model:",
+                                choices=[
+                                    "text-embedding-3-large",
+                                    "text-embedding-3-small",
+                                    "text-embedding-ada-002",
+                                    "models/text-embedding-004",
+                                    "models/embedding-001",
+                                    "BAAI/bge-large-en-v1.5",
+                                ],
+                                value=None,
+                                interactive=True,
+                                allow_custom_value=True,
+                            )
+                            rerank_model = gr.Dropdown(
+                                label="Choose Reranker:",
+                                choices=[
+                                    "BAAI/bge-reranker-large",
                                 ],
                                 value=None,
                                 interactive=True,
@@ -419,6 +441,16 @@ class LocalChatbotUI:
             model.change(
                 self._get_confirm_pull_model,
                 inputs=[model],
+                outputs=[pull_btn, cancel_btn, status],
+            )
+            embed_model.change(
+                self._change_embed_model,
+                inputs=[embed_model],
+                outputs=[pull_btn, cancel_btn, status],
+            )
+            rerank_model.change(
+                self._change_rerank_model,
+                inputs=[rerank_model],
                 outputs=[pull_btn, cancel_btn, status],
             )
             documents.change(
