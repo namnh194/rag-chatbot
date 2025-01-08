@@ -289,7 +289,6 @@ class LocalChatbotUI:
                             model = gr.Dropdown(
                                 label="Choose Model:",
                                 choices=[
-                                    "llama3.2:3b-instruct-q8_0",
                                     "llama3.1:8b-instruct-q8_0",
                                     "gpt-4",
                                     "models/gemini-1.5-flash"
