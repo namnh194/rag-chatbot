@@ -136,7 +136,7 @@ class LocalChatbotUI:
         )
 
     def _pull_model(self, model: str, progress=gr.Progress(track_tqdm=True)):
-        if any(substring in model for substring in
+        if all(substring not in model for substring in
                ["gpt-3.5", "gpt-4", "gemini-1.5"]) and not (
             self._pipeline.check_exist(model)
         ):
