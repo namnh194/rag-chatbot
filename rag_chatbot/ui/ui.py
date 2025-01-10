@@ -135,12 +135,63 @@ class LocalChatbotUI:
             DefaultElement.CONFIRM_PULL_MODEL_STATUS,
         )
 
+    def _get_confirm_pull_embed_model(self, model: str):
+        if model in ["text-embedding-3-large",
+                     "text-embedding-3-small",
+                     "text-embedding-ada-002",
+                     "models/text-embedding-004",
+                     "models/embedding-001"] or (self._pipeline.check_exist_embed(model)):
+            self._change_embed_model(model)
+            return (
+                gr.update(visible=False),
+                gr.update(visible=False),
+                DefaultElement.DEFAULT_STATUS,
+            )
+        return (
+            gr.update(visible=True),
+            gr.update(visible=True),
+            DefaultElement.CONFIRM_PULL_MODEL_STATUS,
+        )
+
     def _pull_model(self, model: str, progress=gr.Progress(track_tqdm=True)):
-        if any(substring in model for substring in
+        if all(substring not in model for substring in
                ["gpt-3.5", "gpt-4", "gemini-1.5"]) and not (
             self._pipeline.check_exist(model)
         ):
             response = self._pipeline.pull_model(model)
+            if response.status_code == 200:
+                gr.Info(f"Pulling {model}!")
+                for data in response.iter_lines(chunk_size=1):
+                    data = json.loads(data)
+                    if "completed" in data.keys() and "total" in data.keys():
+                        progress(data["completed"] / data["total"], desc="Downloading")
+                    else:
+                        progress(0.0)
+            else:
+                gr.Warning(f"Model {model} doesn't exist!")
+                return (
+                    DefaultElement.DEFAULT_MESSAGE,
+                    DefaultElement.DEFAULT_HISTORY,
+                    DefaultElement.PULL_MODEL_FAIL_STATUS,
+                    DefaultElement.DEFAULT_MODEL,
+                )
+
+        return (
+            DefaultElement.DEFAULT_MESSAGE,
+            DefaultElement.DEFAULT_HISTORY,
+            DefaultElement.PULL_MODEL_SCUCCESS_STATUS,
+            model,
+        )
+
+    def _pull_embed_model(self, model: str, progress=gr.Progress(track_tqdm=True)):
+        if model not in ["text-embedding-3-large",
+                        "text-embedding-3-small",
+                        "text-embedding-ada-002",
+                        "models/text-embedding-004",
+                        "models/embedding-001"] and not (
+            self._pipeline.check_exist_embed(model)
+        ):
+            response = self._pipeline.pull_embed_model(model)
             if response.status_code == 200:
                 gr.Info(f"Pulling {model}!")
                 for data in response.iter_lines(chunk_size=1):
@@ -171,6 +222,12 @@ class LocalChatbotUI:
             self._pipeline.set_model()
             self._pipeline.set_engine()
             gr.Info(f"Change model to {model}!")
+        return DefaultElement.DEFAULT_STATUS
+
+    def _change_embed_model(self, embed_model: str):
+        if embed_model not in [None, ""]:
+            self._pipeline.set_embed_model(embed_model)
+            gr.Info(f"Change embedding model to {embed_model}!")
         return DefaultElement.DEFAULT_STATUS
 
     def _upload_document(self, document: list[str], list_files: list[str] | dict):
@@ -311,15 +368,15 @@ class LocalChatbotUI:
                                 interactive=True,
                                 allow_custom_value=True,
                             )
-                            rerank_model = gr.Dropdown(
-                                label="Choose Reranker:",
-                                choices=[
-                                    "BAAI/bge-reranker-large",
-                                ],
-                                value=None,
-                                interactive=True,
-                                allow_custom_value=True,
-                            )
+                            # rerank_model = gr.Dropdown(
+                            #     label="Choose Reranker:",
+                            #     choices=[
+                            #         "BAAI/bge-reranker-large",
+                            #     ],
+                            #     value=None,
+                            #     interactive=True,
+                            #     allow_custom_value=True,
+                            # )
                             with gr.Row():
                                 pull_btn = gr.Button(
                                     value="Pull Model", visible=False, min_width=50
@@ -331,7 +388,7 @@ class LocalChatbotUI:
                             documents = gr.Files(
                                 label="Add Documents",
                                 value=[],
-                                file_types=[".txt", ".pdf", ".csv"],
+                                file_types=[".txt", ".pdf", ".csv", ".docx"],
                                 file_count="multiple",
                                 height=150,
                                 interactive=True,
@@ -340,7 +397,7 @@ class LocalChatbotUI:
                                 upload_doc_btn = gr.UploadButton(
                                     label="Upload",
                                     value=[],
-                                    file_types=[".txt", ".pdf", ".csv"],
+                                    file_types=[".txt", ".pdf", ".csv", ".docx"],
                                     file_count="multiple",
                                     min_width=20,
                                     visible=False,
@@ -372,7 +429,7 @@ class LocalChatbotUI:
                             message = gr.MultimodalTextbox(
                                 value=DefaultElement.DEFAULT_MESSAGE,
                                 placeholder="Enter you message:",
-                                file_types=[".txt", ".pdf", ".csv"],
+                                file_types=[".txt", ".pdf", ".csv", ".docx"],
                                 show_label=False,
                                 scale=6,
                                 lines=1,
@@ -443,16 +500,19 @@ class LocalChatbotUI:
                 inputs=[model],
                 outputs=[pull_btn, cancel_btn, status],
             )
+
             embed_model.change(
                 self._change_embed_model,
                 inputs=[embed_model],
                 outputs=[pull_btn, cancel_btn, status],
             )
-            rerank_model.change(
-                self._change_rerank_model,
-                inputs=[rerank_model],
-                outputs=[pull_btn, cancel_btn, status],
-            )
+
+            # rerank_model.change(
+            #     self._change_rerank_model,
+            #     inputs=[rerank_model],
+            #     outputs=[pull_btn, cancel_btn, status],
+            # )
+
             documents.change(
                 self._processing_document,
                 inputs=[documents],

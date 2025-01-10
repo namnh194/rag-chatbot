@@ -17,7 +17,7 @@ class LocalEmbedding:
     def set(setting: RAGSettings | None = None, **kwargs):
         setting = setting or RAGSettings()
         model_name = setting.ingestion.embed_llm
-        if model_name in ["text-embedding-3-large", "text-embedding-3-small", "text-embedding-ada-002",]:
+        if model_name in ["text-embedding-3-large", "text-embedding-3-small", "text-embedding-ada-002"]:
             return OpenAIEmbedding()
         elif model_name in ["models/text-embedding-004", "models/embedding-001"]:
             return GeminiEmbedding()

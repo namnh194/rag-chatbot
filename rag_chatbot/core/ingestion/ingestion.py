@@ -1,6 +1,14 @@
 import re
 import fitz
-from llama_index.core import Document, Settings
+from docx import Document as DocxDocument
+from docx.table import Table as DocxTable
+from docx.text.paragraph import Paragraph
+from docx.shape import InlineShape
+from docx.text.run import Run
+from docx.oxml.text.paragraph import CT_P
+from docx.oxml.table import CT_Tbl
+
+from llama_index.core import Document as LlamaDocument, Settings
 from llama_index.core.schema import BaseNode
 from llama_index.core.node_parser import SentenceSplitter
 from dotenv import load_dotenv
@@ -28,6 +36,39 @@ class LocalDataIngestion:
 
         return normalized_text
 
+    def _extract_text_from_pdf(self, input_file):
+        document = fitz.open(input_file)
+        all_text = ""
+        for doc_idx, page in enumerate(document):
+            page_text = page.get_text("text")
+            page_text = self._filter_text(page_text)
+            all_text += " " + page_text
+        return all_text
+
+    def _extract_text_from_docx(self, input_file):
+        doc = DocxDocument(input_file)
+        all_text = ""
+        for element in doc.element.body:
+            if isinstance(element, CT_P):
+                paragraph = Paragraph(element, doc)
+                text = self._filter_text(paragraph.text)
+                if text:
+                    all_text += text + "\n\n"
+            elif isinstance(element, CT_Tbl):
+                table = DocxTable(element, doc)
+                table_text = ""
+                for row in table.rows:
+                    row_cells = [self._filter_text(cell.text) for cell in row.cells]
+                    table_text += " | ".join(row_cells) + "\n"
+                all_text += "\n<TABLE>\n" + table_text + "</TABLE>\n\n"
+            elif isinstance(element, InlineShape):
+                if element.description:
+                    all_text += f"\n<IMAGE_DESCRIPTION>{self._filter_text(element.description)}</IMAGE_DESCRIPTION>\n"
+            else:
+                # all_text += f"\n<UNHANDLED_ELEMENT>{element.xml}</UNHANDLED_ELEMENT>\n"
+                pass
+        return all_text
+
     def store_nodes(
         self,
         input_files: list[str],
@@ -52,13 +93,14 @@ class LocalDataIngestion:
             if file_name in self._node_store:
                 return_nodes.extend(self._node_store[file_name])
             else:
-                document = fitz.open(input_file)
-                all_text = ""
-                for doc_idx, page in enumerate(document):
-                    page_text = page.get_text("text")
-                    page_text = self._filter_text(page_text)
-                    all_text += " " + page_text
-                document = Document(
+                # READ .PDF
+                if file_name.endswith(".pdf"):
+                    all_text = self._extract_text_from_pdf(input_file)
+                # READ .DOC/.DOCX
+                elif file_name.endswith((".docx", ".doc")):
+                    all_text = self._extract_text_from_docx(input_file)
+
+                document = LlamaDocument(
                     text=all_text.strip(),
                     metadata={
                         "file_name": file_name,
@@ -90,3 +132,4 @@ class LocalDataIngestion:
         for file in self._ingested_file:
             return_nodes.extend(self._node_store[file])
         return return_nodes
+    
