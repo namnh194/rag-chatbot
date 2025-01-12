@@ -49,7 +49,7 @@ class RetrieverSettings(BaseModel):
         default=20, description="Top k documents"
     )
     retriever_weights: List[float] = Field(
-        default=[0.4, 0.6], description="Weights for retriever"
+        default=[0.65, 0.35], description="Weights for retriever"
     )
     top_k_rerank: int = Field(
         default=6, description="Top k rerank"
