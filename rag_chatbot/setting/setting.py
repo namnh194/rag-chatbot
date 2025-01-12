@@ -55,7 +55,7 @@ class RetrieverSettings(BaseModel):
         default=6, description="Top k rerank"
     )
     rerank_llm: str = Field(
-        default="BAAI/bge-reranker-large", description="Rerank LLM model"
+        default="BAAI/bge-reranker-v2-m3", description="Rerank LLM model"
     )
     fusion_mode: str = Field(
         default="dist_based_score", description="Fusion mode"
