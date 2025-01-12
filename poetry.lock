@@ -2244,6 +2244,23 @@ typing-inspect = ">=0.8.0"
 wrapt = "*"
 
 [[package]]
+name = "llama-index-embeddings-gemini"
+version = "0.1.8"
+description = "llama-index embeddings gemini integration"
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
+files = [
+    {file = "llama_index_embeddings_gemini-0.1.8-py3-none-any.whl", hash = "sha256:b0afd99706cec2cf2f0c5e1f70675170777e82e96a7459f231da07c79408b469"},
+    {file = "llama_index_embeddings_gemini-0.1.8.tar.gz", hash = "sha256:ad02b23ea667c95607da1e534d5579de461895d1944560115a3601ac16f87793"},
+]
+
+[package.dependencies]
+google-generativeai = ">=0.5.2,<0.6.0"
+llama-index-core = ">=0.10.11.post1,<0.11.0"
+
+[[package]]
 name = "llama-index-embeddings-huggingface"
 version = "0.1.5"
 description = "llama-index embeddings huggingface integration"
@@ -6411,4 +6428,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "5943119e475a946904c1ebf89df58144732504a11b50715a617d7c85daf856f5"
+content-hash = "68857de9954daa7d6b3ba3f5ae2c60cc954c9e5edd5d4585e36a1644eeacde2e"
