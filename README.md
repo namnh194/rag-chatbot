@@ -119,7 +119,8 @@ source ./scripts/run.sh --ngrok
 
 - [x] Add evaluation.
 - [x] Better Document Processing.
-- [x] Add Gemini llm client and more local Ollama models.
+- [x] Add Gemini llm client.
+- [ ] Add more efficient inference methods (unsloth, vLLM, ipex-LLM, ...)
 - [ ] Organize conversation flows and dataset more effectively
 - [ ] Support better Embedding Model for Vietnamese and other languages.
 - [ ] Experiment with more RAG techniques (ReAct Agent, ...)
