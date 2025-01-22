@@ -25,7 +25,7 @@ class OllamaSettings(BaseModel):
         default=1.1, description="Repeat penalty"
     )
     request_timeout: float = Field(
-        default=300, description="Request timeout"
+        default=400, description="Request timeout"
     )
     port: int = Field(
         default=11434, description="Port number"
@@ -52,7 +52,7 @@ class RetrieverSettings(BaseModel):
         default=[0.65, 0.35], description="Weights for retriever"
     )
     top_k_rerank: int = Field(
-        default=6, description="Top k rerank"
+        default=8, description="Top k rerank"
     )
     rerank_llm: str = Field(
         default="BAAI/bge-reranker-v2-m3", description="Rerank LLM model"
@@ -76,7 +76,7 @@ class IngestionSettings(BaseModel):
         default=512, description="Document chunk size"
     )
     chunk_overlap: int = Field(
-        default=32, description="Document chunk overlap"
+        default=64, description="Document chunk overlap"
     )
     chunking_regex: str = Field(
         default="[^,.;。？！]+[,.;。？！]?", description="Chunking regex"
